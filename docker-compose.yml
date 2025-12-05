@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # === 1. Mosquitto (Broker) ===
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - iot-network
+
+  # === 2. InfluxDB (Base de données temporelle) ===
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=hopital_db
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    networks:
+      - iot-network
+
+  # === 3. Node-RED (Cerveau) ===
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+    environment:
+      - TZ=Africa/Casablanca
+    networks:
+      - iot-network
+    depends_on:
+      - mosquitto
+      - influxdb
+
+  # === 4. Grafana (Visualisation) ===
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    networks:
+      - iot-network
+    depends_on:
+      - influxdb
+
+# === Réseau Dédié ===
+networks:
+  iot-network:
+    driver: bridge
