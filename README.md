@@ -11,10 +11,6 @@ Developed as part of the Applied Computer Science (S5) curriculum.
 - [Technological Stack](#-technological-stack)
 - [Prerequisites](#-prerequisites)
 - [Installation & Setup](#-installation--setup)
-- [Usage Guide](#-usage-guide)
-- [Screenshots](#-screenshots)
-- [Project Structure](#-project-structure)
-- [Author](#-author)
 
 ## 🧐 Overview
 
@@ -74,7 +70,7 @@ Before running the project, ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/ansss22/IoT-Sante-Monitoring.git
+git clone https://github.com/anass-elamrany/IoT-Sante-Monitoring.git
 cd IoT-Healthcare-Monitoring
 ```
 
@@ -91,87 +87,26 @@ cd simulator
 pip install -r requirements.txt
 ```
 
-4. Run the Simulation
+### 4. Run the Simulation
 Start sending data to the broker:
 
-bash
+```bash
 python main.py
-You should see logs like:
+```
 
-text
-📤 hopital/service_A/patient_001 -> BPM:75 | Tension:120/80
-🖥 Usage Guide
-Access the Dashboard (Grafana)
-URL: http://localhost:3000
 
-Credentials: admin / admin (skip password change if asked).
+### 5. Access the Dashboard (Grafana)
+- **URL:** http://localhost:3000
+- **Credentials:** `admin` / `admin` (skip password change if prompted).
+- **Import Dashboard:** If the dashboard is not visible, import `grafana/dashboard_export.json`.
 
-Import Dashboard: If the dashboard is not visible, import grafana/dashboard_export.json.
+### 6. Access the Flow Editor (Node-RED)
+- **URL:** http://localhost:1880
+- **Import Flows:** If flows are missing, import `nodered/flows.json`.
 
-Access the Flow Editor (Node-RED)
-URL: http://localhost:1880
+---
 
-Import Flows: If flows are missing, import nodered/flows.json.
+⭐ **If you find this project useful, please give it a star!**
 
-📸 Screenshots
-1. Medical Dashboard (Global View)
-https://images/dashboard.png
 
-2. Node-RED Processing Flow
-https://images/nodered_flow.png
-
-3. Critical Alerts History
-https://images/alerts.png
-
-📂 Project Structure
-text
-IoT-Healthcare-Monitoring/
-├── docker-compose.yml          # Main infrastructure configuration
-├── README.md                   # Documentation
-├── images/                     # Screenshots for documentation
-│   ├── dashboard.png
-│   ├── architecture.png
-│   └── ...
-├── mosquitto/
-│   └── config/
-│       └── mosquitto.conf      # Broker settings
-├── simulator/
-│   ├── main.py                 # Python Data Generator
-│   └── requirements.txt        # Python dependencies
-├── nodered/
-│   └── flows.json              # Backend Logic (Source Code)
-├── grafana/
-│   └── dashboard_export.json   # Dashboard Layout Backup
-└── docs/
-    └── Rapport_Final.pdf       # Academic Report
-👤 Author
-Anass El Amrany
-
-University: Mohammed Premier University, Oujda
-
-Faculty: Faculty of Sciences
-
-Program: Applied Computer Science (S5)
-
-Supervisor: Prof. Belouch Mustapha
-
-Academic Year: 2024-2025
-
-⭐ If you find this project useful, please give it a star!
-
-text
-
-**Remarques importantes :**
-
-1. **Remplacez** `https://github.com/YOUR_USERNAME/IoT-Healthcare-Monitoring.git` par votre véritable URL GitHub.
-
-2. **Assurez-vous** que les fichiers images (`dashboard.png`, `architecture.png`, `nodered_flow.png`, `alerts.png`) existent réellement dans le dossier `images/`.
-
-3. **Vérifiez** que tous les fichiers référencés dans la structure du projet existent bien.
-
-4. Pour rendre le README encore plus professionnel, vous pourriez ajouter :
-   - Une section "License"
-   - Une section "Contributing"
-   - Des badges GitHub (build status, version, etc.)
-   - Un GIF démo du système en fonctionnement
 
