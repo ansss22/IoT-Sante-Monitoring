@@ -91,7 +91,7 @@ pip install -r requirements.txt
 Start sending data to the broker:
 
 ```bash
-python main.py
+python patient_simulator.py
 ```
 
 
